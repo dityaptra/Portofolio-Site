@@ -81,8 +81,6 @@ export default function Hero() {
                   2000,
                   "AI Engineer",
                   2000,
-                  "SEO Specialist",
-                  2000,
                 ]}
                 wrapper="span"
                 speed={50}

@@ -151,3 +151,27 @@ body {
   .dark .sun-and-moon > .sun-beams { transition-duration: 0.15s; transform: rotateZ(-25deg); }
   .dark .sun-and-moon > .moon > circle { transition-duration: 0.5s; transition-delay: 0.25s; }
 }
+
+/* --- OPTIMASI ANIMASI MARQUEE --- */
+/* Menggunakan transform3d memicu Hardware Acceleration (GPU) */
+@keyframes scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content; /* Penting agar container memanjang sesuai konten */
+  animation: scroll 40s linear infinite;
+  will-change: transform; /* Memberitahu browser untuk memprioritaskan layer ini */
+}
+
+/* Helper class untuk mengatur kecepatan lewat Tailwind arbitrary values nanti,
+   tapi kita set defaultnya di sini agar aman */
+.paused {
+  animation-play-state: paused;
+}

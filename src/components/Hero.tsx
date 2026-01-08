@@ -89,7 +89,7 @@ export default function Hero() {
             </div>
 
             <p className="text-slate-600 dark:text-slate-400 text-lg mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-              Mengubah ide kompleks menjadi pengalaman digital yang memukau.
+              Mengubah ide kompleks menjadi produk digital yang berkualitas.
               Fokus menciptakan solusi untuk membantu bisnis Anda tumbuh di era digital.
             </p>
 

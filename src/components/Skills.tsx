@@ -13,7 +13,7 @@ const row1 = [
 
 const row2 = [
   { name: "Laravel", icon: "/icons/laravel.svg" },
-  { name: "Django", icon: "/icons/django.svg" },
+  { name: "Go", icon: "/icons/go.svg" },
   { name: "FastAPI", icon: "/icons/fastapi.svg" },
   { name: "MySQL", icon: "/icons/mysql.svg" },
   { name: "PostgreSQL", icon: "/icons/postgresql.svg" },

@@ -62,7 +62,7 @@ export default function Navbar() {
             {/* DARK MODE TOGGLE (DESKTOP) */}
             <button
               type="button"
-              className="theme-toggle text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg p-2 transition-colors cursor-pointer"
+              className="theme-toggle text-slate-600 dark:text-slate-400 rounded-lg p-2 transition-colors cursor-pointer"
               onClick={toggleTheme}
               aria-label="Toggle Dark Mode"
             >
@@ -91,7 +91,7 @@ export default function Navbar() {
              {/* DARK MODE TOGGLE (MOBILE) */}
              <button
               type="button"
-              className="theme-toggle text-slate-500 dark:text-slate-400 p-2 cursor-pointer"
+              className="theme-toggle text-slate-600 dark:text-slate-400 p-2 cursor-pointer"
               onClick={toggleTheme}
             >
               <svg className="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">

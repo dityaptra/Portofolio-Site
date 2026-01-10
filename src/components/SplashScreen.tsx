@@ -14,7 +14,7 @@ export default function SplashScreen({
       setTimeout(() => {
         finishLoading();
       }, 500);
-    }, 3600);
+    }, 4000);
 
     return () => clearTimeout(timer);
   }, [finishLoading]);

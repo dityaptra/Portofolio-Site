@@ -198,7 +198,7 @@ export default function Contact() {
                       name="subject"
                       required
                       className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-700 dark:text-white border border-slate-200 dark:border-slate-600 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 dark:focus:ring-emerald-900 outline-none transition"
-                      placeholder="Project Inquiry..."
+                      placeholder="Enter the subject"
                     />
                   </div>
 

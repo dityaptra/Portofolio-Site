@@ -13,6 +13,7 @@ const navLinks = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [theme, setTheme] = useState("light");
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -23,10 +24,31 @@ export default function Navbar() {
     }
   }, [theme]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 100;
+
+      navLinks.forEach((link) => {
+        const section = document.querySelector(link.href);
+        if (section) {
+          const { offsetTop, offsetHeight } = section as HTMLElement;
+          if (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + offsetHeight
+          ) {
+            setActiveSection(link.href.substring(1));
+          }
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const toggleTheme = () => {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
-  // ----------------------------------------
 
   return (
     <nav className="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm border-b border-emerald-100 dark:border-slate-800 transition-colors duration-300">
@@ -46,23 +68,34 @@ export default function Navbar() {
 
           {/* DESKTOP MENU */}
           <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link, index) => (
-              <motion.a
-                key={link.name}
-                href={link.href}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 font-medium transition-colors"
-              >
-                {link.name}
-              </motion.a>
-            ))}
+            {navLinks.map((link, index) => {
+              const isActive = activeSection === link.href.substring(1);
+
+              return (
+                <motion.a
+                  key={link.name}
+                  href={link.href}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className={`relative group font-medium transition-colors duration-300 ${
+                    isActive
+                      ? "text-emerald-600 dark:text-emerald-400"
+                      : "text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400" // Normal: Abu-abu -> Hover Hijau
+                  }`}
+                >
+                  {link.name}
+                  
+                  {/* --- GARIS BAWAH (UNDERLINE) --- */}
+                  <span className="absolute -bottom-1 left-0 h-0.5 bg-emerald-600 dark:bg-emerald-400 transition-all duration-300 ease-in-out w-0 group-hover:w-full"></span>
+                </motion.a>
+              );
+            })}
 
             {/* DARK MODE TOGGLE (DESKTOP) */}
             <button
               type="button"
-              className="theme-toggle text-slate-600 dark:text-slate-400 rounded-lg p-2 transition-colors cursor-pointer"
+              className="theme-toggle !text-slate-600 dark:!text-slate-300 hover:!text-emerald-600 dark:hover:!text-emerald-400 p-2 transition-colors cursor-pointer"
               onClick={toggleTheme}
               aria-label="Toggle Dark Mode"
             >
@@ -72,7 +105,7 @@ export default function Navbar() {
                   <circle cx="24" cy="10" r="6" fill="black" />
                 </mask>
                 <circle className="sun" cx="12" cy="12" r="6" mask="url(#moon-mask)" fill="currentColor" />
-                <g className="sun-beams" stroke="currentColor">
+                <g className="sun-beams" stroke="currentColor" strokeWidth="2">
                   <line x1="12" y1="1" x2="12" y2="3" />
                   <line x1="12" y1="21" x2="12" y2="23" />
                   <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
@@ -88,10 +121,9 @@ export default function Navbar() {
 
           {/* MOBILE TOGGLE & BURGER */}
           <div className="md:hidden flex items-center gap-4">
-             {/* DARK MODE TOGGLE (MOBILE) */}
              <button
               type="button"
-              className="theme-toggle text-slate-600 dark:text-slate-400 p-2 cursor-pointer"
+              className="theme-toggle !text-slate-600 dark:!text-slate-300 hover:!text-emerald-600 dark:hover:!text-emerald-400 p-2 cursor-pointer"
               onClick={toggleTheme}
             >
               <svg className="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
@@ -100,7 +132,7 @@ export default function Navbar() {
                   <circle cx="24" cy="10" r="6" fill="black" />
                 </mask>
                 <circle className="sun" cx="12" cy="12" r="6" mask="url(#moon-mask-mobile)" fill="currentColor" />
-                <g className="sun-beams" stroke="currentColor">
+                <g className="sun-beams" stroke="currentColor" strokeWidth="2">
                   <line x1="12" y1="1" x2="12" y2="3" />
                   <line x1="12" y1="21" x2="12" y2="23" />
                   <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
@@ -132,16 +164,23 @@ export default function Navbar() {
           className="md:hidden bg-white dark:bg-slate-900 border-t border-emerald-100 dark:border-slate-800"
         >
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setIsOpen(false)}
-                className="block px-3 py-2 text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-slate-800 rounded-md font-medium"
-              >
-                {link.name}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href.substring(1);
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`block px-3 py-2 rounded-md font-medium transition-colors ${
+                    isActive 
+                      ? "text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20" 
+                      : "text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-slate-800"
+                  }`}
+                >
+                  {link.name}
+                </a>
+              );
+            })}
           </div>
         </motion.div>
       )}

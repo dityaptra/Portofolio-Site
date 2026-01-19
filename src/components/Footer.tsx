@@ -1,10 +1,9 @@
-import { FaGithub, FaLinkedin, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 
 const socialLinks = [
   { icon: <FaGithub />, href: "https://github.com/dityaptra", label: "GitHub" },
   { icon: <FaLinkedin />, href: "https://www.linkedin.com/in/ditya1916bb282", label: "LinkedIn" },
   { icon: <FaInstagram />, href: "https://www.instagram.com/gede.raditya_", label: "Instagram" },
-  { icon: <FaWhatsapp />, href: "https://wa.me/6281977306669", label: "WhatsApp" },
 ];
 
 export default function Footer() {

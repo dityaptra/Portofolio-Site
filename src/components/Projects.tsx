@@ -23,8 +23,8 @@ const projects = [
     desc: "Halaman web informatif dengan SEO yang kuat untuk jasa lobang dan pasang kancing.",
     tech: ["Next.js", "TypeScript", "TailwindCSS"],
     image: "/images/projects/radityacollection.png",
-    link: "https://www.radityacollection.web.id/",
-    github: "https://github.com/dityaptra/Raditya-Collection-V2",
+    link: "/gede-raditya-portofolio/src/components/NotFound.tsx",
+    github: "/gede-raditya-portofolio/src/components/NotFound.tsx",
   },
   {
     title: "Coming Soon",
@@ -38,7 +38,7 @@ const projects = [
     title: "Coming Soon",
     desc: "Sedang dalam tahap pengembangan.",
     tech: ["React", "Python", "TensorFlow"],
-    image: "/images/image1.png", // Menggunakan placeholder yang ada
+    image: "/images/image1.png",
     link: "/gede-raditya-portofolio/src/components/NotFound.tsx",
     github: "/gede-raditya-portofolio/src/components/NotFound.tsx",
   },

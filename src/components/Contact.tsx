@@ -1,4 +1,4 @@
-import { useState } from "react"; // Import useState
+import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   FaEnvelope,
@@ -16,7 +16,7 @@ export default function Contact() {
   const encode = (data: any) => {
     return Object.keys(data)
       .map(
-        (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+        (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]),
       )
       .join("&");
   };
@@ -31,7 +31,6 @@ export default function Contact() {
       return;
     }
 
-    // --- 🛡️ CEK 2: COOLDOWN (Anti Manusia Spam) ---
     const lastSubmitTime = localStorage.getItem("lastSubmitTime");
     const currentTime = Date.now();
     const cooldownPeriod = 5 * 60 * 1000;
@@ -41,10 +40,10 @@ export default function Contact() {
       currentTime - parseInt(lastSubmitTime) < cooldownPeriod
     ) {
       const sisaWaktu = Math.ceil(
-        (cooldownPeriod - (currentTime - parseInt(lastSubmitTime))) / 60000
+        (cooldownPeriod - (currentTime - parseInt(lastSubmitTime))) / 60000,
       );
       setErrorMessage(
-        `Mohon tunggu ${sisaWaktu} menit lagi sebelum mengirim pesan baru.`
+        `Mohon tunggu ${sisaWaktu} menit lagi sebelum mengirim pesan baru.`,
       );
       return;
     }
@@ -106,7 +105,7 @@ export default function Contact() {
 
             <div className="flex items-center gap-4 text-slate-600 dark:text-slate-300 mb-2">
               <FaEnvelope className="text-emerald-500" />
-              <span>gdradit@gmail.com</span>
+              <span>gdradit765@gmail.com</span>
             </div>
             <div className="flex items-center gap-4 text-slate-600 dark:text-slate-300">
               <FaMapMarkerAlt className="text-emerald-500" />
@@ -114,14 +113,12 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          {/* FORM SIDE */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-xl border border-slate-100 dark:border-slate-700 transition-colors duration-300"
           >
-            {/* TAMPILAN JIKA SUKSES */}
             {formStatus === "success" ? (
               <div className="flex flex-col items-center justify-center text-center h-full py-10 space-y-4">
                 <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600">
@@ -142,14 +139,12 @@ export default function Contact() {
                 </button>
               </div>
             ) : (
-              /* TAMPILAN FORM NORMAL */
               <form
                 onSubmit={handleSubmit}
                 name="contact"
                 method="POST"
                 data-netlify="true"
               >
-                {/* Hidden input tetap wajib */}
                 <input type="hidden" name="form-name" value="contact" />
                 <p className="hidden">
                   <label>
@@ -218,7 +213,7 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={formStatus === "submitting"}
-                    className="w-full py-4 bg-emerald-600 text-white font-bold rounded-xl hover:bg-emerald-700 transition-all hover:shadow-lg hover:shadow-emerald-200 dark:hover:shadow-emerald-900 flex justify-center items-center gap-2 group cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="w-full py-4 bg-emerald-600 text-white font-bold rounded-full hover:bg-emerald-700 transition-all hover:shadow-lg hover:shadow-emerald-200 dark:hover:shadow-emerald-900 flex justify-center items-center gap-2 group cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
                   >
                     {formStatus === "submitting" ? "Sending..." : "Send Now"}
                     {!formStatus && (

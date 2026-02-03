@@ -1,18 +1,17 @@
 @import "tailwindcss";
 
-/* --- PENTING: Paksa Tailwind v4 pakai Class Strategy --- */
 @variant dark (&:where(.dark, .dark *));
 
 @theme {
   --font-geist-sans: "Inter", sans-serif;
   --font-geist-mono: "JetBrains Mono", monospace;
-  
+
   --color-emerald-50: #ecfdf5;
   --color-emerald-100: #d1fae5;
   --color-emerald-200: #a7f3d0;
   --color-emerald-500: #10b981;
   --color-emerald-600: #059669;
-  
+
   --breakpoint-3xl: 1920px;
 }
 
@@ -22,23 +21,24 @@ html {
 }
 
 body {
-  font-family: var(--font-geist-sans); 
-  background-color: var(--background); 
+  font-family: var(--font-geist-sans);
+  background-color: var(--background);
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Transisi halus saat ganti mode */
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
-/* --- LOADER ANIMATION --- */
 .loader {
   width: fit-content;
   font-size: 25px;
   font-family: var(--font-geist-mono);
   line-height: 1.4;
   font-weight: bold;
-  background: linear-gradient(#059669 0 0) left,
+  background:
+    linear-gradient(#059669 0 0) left,
     linear-gradient(#059669 0 0) right;
   background-repeat: no-repeat;
   border-right: 5px solid #0000;
@@ -58,12 +58,8 @@ body {
   left: 0;
   width: 33px;
   height: 90px;
-  background: linear-gradient(
-        90deg,
-        #059669 6px,
-        #0000 0 calc(100% - 6px),
-        #059669 0
-      )
+  background:
+    linear-gradient(90deg, #059669 6px, #0000 0 calc(100% - 6px), #059669 0)
       bottom / 33px 30px,
     linear-gradient(90deg, red 6px, #0000 0 calc(100% - 6px), red 0) bottom 15px
       left 0/33px 9px,
@@ -74,32 +70,77 @@ body {
 }
 
 @keyframes l9-0 {
-  0%, 25% { background-size: 50% 100%; }
-  25.1%, 75% { background-size: 0 0, 50% 100%; }
-  75.1%, 100% { background-size: 0 0, 0 0; }
+  0%,
+  25% {
+    background-size: 50% 100%;
+  }
+  25.1%,
+  75% {
+    background-size:
+      0 0,
+      50% 100%;
+  }
+  75.1%,
+  100% {
+    background-size:
+      0 0,
+      0 0;
+  }
 }
 
 @keyframes l9-1 {
-  25% { background-position: bottom, bottom 81px left 0, bottom 5px left 0, bottom 0 left 50%; left: 0; }
-  25.1% { background-position: bottom, bottom 15px left 0, bottom 5px left 0, bottom 0 left 50%; left: 0; }
-  50% { background-position: bottom, bottom 15px left 0, bottom 5px left 0, bottom 0 left 50%; left: calc(100% - 33px); }
-  75% { background-position: bottom, bottom 81px left 0, bottom 5px left 0, bottom 0 left 50%; left: calc(100% - 33px); }
-  75.1% { background-position: bottom, bottom 15px left 0, bottom 5px left 0, bottom 0 left 50%; left: calc(100% - 33px); }
+  25% {
+    background-position:
+      bottom,
+      bottom 81px left 0,
+      bottom 5px left 0,
+      bottom 0 left 50%;
+    left: 0;
+  }
+  25.1% {
+    background-position:
+      bottom,
+      bottom 15px left 0,
+      bottom 5px left 0,
+      bottom 0 left 50%;
+    left: 0;
+  }
+  50% {
+    background-position:
+      bottom,
+      bottom 15px left 0,
+      bottom 5px left 0,
+      bottom 0 left 50%;
+    left: calc(100% - 33px);
+  }
+  75% {
+    background-position:
+      bottom,
+      bottom 81px left 0,
+      bottom 5px left 0,
+      bottom 0 left 50%;
+    left: calc(100% - 33px);
+  }
+  75.1% {
+    background-position:
+      bottom,
+      bottom 15px left 0,
+      bottom 5px left 0,
+      bottom 0 left 50%;
+    left: calc(100% - 33px);
+  }
 }
-
-/* --- THEME & TOGGLE ANIMATION --- */
 
 :root {
   --ease-3: cubic-bezier(0.25, 0, 0.3, 1);
   --ease-elastic-3: cubic-bezier(0.5, 1.25, 0.75, 1.25);
   --ease-elastic-4: cubic-bezier(0.5, 1.5, 0.75, 1.25);
   --ease-out-5: cubic-bezier(0, 0, 0, 1);
-  
-  --icon-fill: #94a3b8; 
-  --icon-fill-hover: #10b981; 
+
+  --icon-fill: #94a3b8;
+  --icon-fill-hover: #10b981;
 }
 
-/* WARNA LIGHT MODE */
 :root {
   --background: #f8fafc;
   --foreground: #1e293b;
@@ -110,50 +151,88 @@ body {
   --border: #e2e8f0;
 }
 
-/* WARNA DARK MODE (Diaktifkan manual via class .dark) */
 .dark {
-  --icon-fill: #94a3b8; 
-  --icon-fill-hover: #34d399; 
-  
-  --background: #0f172a; 
-  --foreground: #f1f5f9; 
-  --card: #1e293b; 
-  --card-foreground: #f1f5f9; 
-  --muted: #334155; 
-  --muted-foreground: #94a3b8; 
+  --icon-fill: #94a3b8;
+  --icon-fill-hover: #34d399;
+
+  --background: #0f172a;
+  --foreground: #f1f5f9;
+  --card: #1e293b;
+  --card-foreground: #f1f5f9;
+  --muted: #334155;
+  --muted-foreground: #94a3b8;
   --border: #334155;
-  
+
   color-scheme: dark;
 }
 
-/* SVG Animations untuk Tombol */
-.sun-and-moon > :is(.moon, .sun, .sun-beams) { transform-origin: center; }
-.sun-and-moon > :is(.moon, .sun) { fill: currentColor; }
-.theme-toggle:is(:hover, :focus-visible) > .sun-and-moon > :is(.moon, .sun) { fill: var(--icon-fill-hover); }
-.sun-and-moon > .sun-beams { stroke: currentColor; stroke-width: 2px; }
-.theme-toggle:is(:hover, :focus-visible) .sun-and-moon > .sun-beams { stroke: var(--icon-fill-hover); }
+.sun-and-moon > :is(.moon, .sun, .sun-beams) {
+  transform-origin: center;
+}
+.sun-and-moon > :is(.moon, .sun) {
+  fill: currentColor;
+}
+.theme-toggle:is(:hover, :focus-visible) > .sun-and-moon > :is(.moon, .sun) {
+  fill: var(--icon-fill-hover);
+}
+.sun-and-moon > .sun-beams {
+  stroke: currentColor;
+  stroke-width: 2px;
+}
+.theme-toggle:is(:hover, :focus-visible) .sun-and-moon > .sun-beams {
+  stroke: var(--icon-fill-hover);
+}
 
-.dark .sun-and-moon > .sun { transform: scale(1.75); }
-.dark .sun-and-moon > .sun-beams { opacity: 0; }
-.dark .sun-and-moon > .moon > circle { transform: translateX(-7px); }
+.dark .sun-and-moon > .sun {
+  transform: scale(1.75);
+}
+.dark .sun-and-moon > .sun-beams {
+  opacity: 0;
+}
+.dark .sun-and-moon > .moon > circle {
+  transform: translateX(-7px);
+}
 
 @supports (cx: 1) {
-  .dark .sun-and-moon > .moon > circle { cx: 17; transform: translateX(0); }
+  .dark .sun-and-moon > .moon > circle {
+    cx: 17;
+    transform: translateX(0);
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .sun-and-moon > .sun { transition: transform 0.5s var(--ease-elastic-3); }
-  .sun-and-moon > .sun-beams { transition: transform 0.5s var(--ease-elastic-4), opacity 0.5s var(--ease-3); }
-  .sun-and-moon .moon > circle { transition: transform 0.25s var(--ease-out-5); }
-  @supports (cx: 1) { .sun-and-moon .moon > circle { transition: cx 0.25s var(--ease-out-5); } }
-  
-  .dark .sun-and-moon > .sun { transition-timing-function: var(--ease-3); transition-duration: 0.25s; transform: scale(1.75); }
-  .dark .sun-and-moon > .sun-beams { transition-duration: 0.15s; transform: rotateZ(-25deg); }
-  .dark .sun-and-moon > .moon > circle { transition-duration: 0.5s; transition-delay: 0.25s; }
+  .sun-and-moon > .sun {
+    transition: transform 0.5s var(--ease-elastic-3);
+  }
+  .sun-and-moon > .sun-beams {
+    transition:
+      transform 0.5s var(--ease-elastic-4),
+      opacity 0.5s var(--ease-3);
+  }
+  .sun-and-moon .moon > circle {
+    transition: transform 0.25s var(--ease-out-5);
+  }
+  @supports (cx: 1) {
+    .sun-and-moon .moon > circle {
+      transition: cx 0.25s var(--ease-out-5);
+    }
+  }
+
+  .dark .sun-and-moon > .sun {
+    transition-timing-function: var(--ease-3);
+    transition-duration: 0.25s;
+    transform: scale(1.75);
+  }
+  .dark .sun-and-moon > .sun-beams {
+    transition-duration: 0.15s;
+    transform: rotateZ(-25deg);
+  }
+  .dark .sun-and-moon > .moon > circle {
+    transition-duration: 0.5s;
+    transition-delay: 0.25s;
+  }
 }
 
-/* --- OPTIMASI ANIMASI MARQUEE --- */
-/* Menggunakan transform3d memicu Hardware Acceleration (GPU) */
 @keyframes scroll {
   0% {
     transform: translate3d(0, 0, 0);
@@ -165,13 +244,11 @@ body {
 
 .animate-marquee {
   display: flex;
-  width: max-content; /* Penting agar container memanjang sesuai konten */
+  width: max-content;
   animation: scroll 40s linear infinite;
-  will-change: transform; /* Memberitahu browser untuk memprioritaskan layer ini */
+  will-change: transform;
 }
 
-/* Helper class untuk mengatur kecepatan lewat Tailwind arbitrary values nanti,
-   tapi kita set defaultnya di sini agar aman */
 .paused {
   animation-play-state: paused;
 }

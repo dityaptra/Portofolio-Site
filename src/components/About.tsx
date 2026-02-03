@@ -15,18 +15,15 @@ export default function About() {
           viewport={{ once: true }}
           className="mb-12"
         >
-          {/* Header Section */}
           <div className="mb-10">
             <h2 className="text-3xl font-bold text-slate-800 dark:text-white mb-4 border-l-4 border-emerald-500 pl-4">
               About Me
             </h2>
           </div>
 
-          {/* --- Layout Utama --- */}
           <div className="flex flex-col lg:flex-row gap-10 lg:items-stretch">
-            {/* 1. BAGIAN KIRI: FOTO PROFIL */}
             <div className="w-full lg:w-1/3 relative shrink-0">
-              <div className="aspect-[3/4] lg:aspect-auto lg:h-full rounded-3xl overflow-hidden border-2 border-emerald-500 shadow-xl relative">
+              <div className="aspect-3/4 lg:aspect-auto lg:h-full rounded-3xl overflow-hidden border-2 border-emerald-500 shadow-xl relative">
                 <img
                   src="/images/image1.png"
                   alt="Profile Photo"
@@ -35,9 +32,7 @@ export default function About() {
               </div>
             </div>
 
-            {/* 2. BAGIAN KANAN: TEKS & QUICK BIO */}
             <div className="w-full lg:w-2/3 flex flex-col gap-6">
-              {/* Kotak Deskripsi */}
               <div className="grow bg-white dark:bg-slate-800 p-8 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
                 <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-lg">
                   Hai! Saya adalah mahasiswa Ilmu Komputer yang sedang mendalami
@@ -49,10 +44,8 @@ export default function About() {
                 </p>
               </div>
 
-              {/* Kotak Bio (Clean Style - No Hover) */}
               <div className="bg-white dark:bg-slate-800 p-8 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-y-8 gap-x-12">
-                  {/* Item 1: Location */}
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 flex items-center justify-center bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 rounded-2xl shrink-0">
                       <FaMapMarkerAlt className="text-xl" />
@@ -67,7 +60,6 @@ export default function About() {
                     </div>
                   </div>
 
-                  {/* Item 2: Education */}
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 flex items-center justify-center bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 rounded-2xl shrink-0">
                       <FaGraduationCap className="text-xl" />
@@ -82,7 +74,6 @@ export default function About() {
                     </div>
                   </div>
 
-                  {/* Item 3: Current Role */}
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 flex items-center justify-center bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 rounded-2xl shrink-0">
                       <FaBriefcase className="text-xl" />
@@ -97,7 +88,6 @@ export default function About() {
                     </div>
                   </div>
 
-                  {/* Item 4: Hobbies */}
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 flex items-center justify-center bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 rounded-2xl shrink-0">
                       <PiBarbellFill className="text-xl" />
@@ -115,7 +105,6 @@ export default function About() {
               </div>
             </div>
           </div>
-          {/* --- Akhir Layout Utama --- */}
         </motion.div>
       </div>
     </section>

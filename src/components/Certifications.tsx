@@ -22,8 +22,8 @@ const certifications = [
   {
     title: "Machine Learning Beginner",
     issuer: "Dicoding",
-    date: "Nov 2025",
-    link: "/certificates/python_dicoding.pdf",
+    date: "Jan 2026",
+    link: "/certificates/ml_dicoding.pdf",
   },
 ];
 
@@ -34,7 +34,6 @@ export default function Certifications() {
       className="py-20 bg-slate-50 dark:bg-slate-900 transition-colors duration-300"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -46,7 +45,6 @@ export default function Certifications() {
           </h2>
         </motion.div>
 
-        {/* Grid Container */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {certifications.map((cert, idx) => (
             <motion.div
@@ -57,41 +55,32 @@ export default function Certifications() {
               transition={{ delay: idx * 0.1 }}
               className="group relative h-full"
             >
-              {/* --- KARTU UTAMA --- */}
               <div className="h-full bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:border-emerald-500/50 relative overflow-hidden flex flex-col">
-                {/* Dekorasi Background Blob (Hiasan) */}
                 <div className="absolute -right-6 -top-6 w-24 h-24 bg-emerald-50 dark:bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-100 dark:group-hover:bg-emerald-500/20 transition-all duration-500"></div>
 
-                {/* Bagian Atas: Icon & Tanggal */}
                 <div className="flex justify-between items-start mb-6 relative z-10">
-                  {/* Icon Box */}
                   <div className="w-12 h-12 flex items-center justify-center bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-xl shadow-inner">
                     <FaAward className="text-2xl" />
                   </div>
 
-                  {/* Date Pill */}
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-600">
                     <FaCalendarAlt className="text-emerald-500" />
                     {cert.date}
                   </span>
                 </div>
 
-                {/* Bagian Tengah: Judul & Penerbit */}
                 <div className="mb-6 relative z-10 grow">
                   <h3 className="text-xl text-center font-bold text-slate-800 dark:text-white mb-2 line-clamp-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
                     {cert.title}
                   </h3>
                 </div>
 
-                {/* Bagian Bawah: Tombol Action */}
                 <div className="relative z-10 flex justify-between items-center mt-auto pt-4 border-t border-slate-300 dark:border-slate-700">
-                  {/* 1. Institusi */}
                   <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-sm font-medium">
                     <FaBuilding className="text-slate-400" />
                     <span>{cert.issuer}</span>
                   </div>
 
-                  {/* 2. Tombol View */}
                   <a
                     href={cert.link}
                     target="_blank"

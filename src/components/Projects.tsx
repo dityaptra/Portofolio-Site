@@ -1,21 +1,20 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { 
-  FaExternalLinkAlt, 
-  FaGithub, 
-  FaChevronLeft, 
-  FaChevronRight 
+import {
+  FaExternalLinkAlt,
+  FaGithub,
+  FaChevronLeft,
+  FaChevronRight,
 } from "react-icons/fa";
 
-// Data dummy (Saya tambahkan 1 data lagi agar pagination muncul untuk demo)
 const projects = [
   {
     title: "TiketLoka",
     desc: "Aplikasi web dengan desain responsif untuk memesan tiket wisata online.",
     tech: ["Next.js", "Typescript", "Tailwind", "Laravel", "MySQL"],
     image: "/images/projects/tiketloka.png",
-    link: "https://www.tiketloka.web.id/",
+    link: "https://www.tiketloka.web.id",
     github: "https://github.com/dityaptra/TiketLoka-Frontend",
   },
   {
@@ -23,8 +22,8 @@ const projects = [
     desc: "Halaman web informatif dengan SEO yang kuat untuk jasa lobang dan pasang kancing.",
     tech: ["Next.js", "TypeScript", "TailwindCSS"],
     image: "/images/projects/radityacollection.png",
-    link: "/gede-raditya-portofolio/src/components/NotFound.tsx",
-    github: "/gede-raditya-portofolio/src/components/NotFound.tsx",
+    link: "https://www.radityacollection.web.id",
+    github: "https://github.com/dityaptra/Raditya-Collection-V2",
   },
   {
     title: "Coming Soon",
@@ -49,15 +48,15 @@ const ITEMS_PER_PAGE = 3;
 export default function Projects() {
   const [currentPage, setCurrentPage] = useState(1);
 
-  // --- LOGIC PAGINATION ---
   const totalPages = Math.ceil(projects.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const currentProjects = projects.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  const currentProjects = projects.slice(
+    startIndex,
+    startIndex + ITEMS_PER_PAGE,
+  );
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    // Opsional: Scroll sedikit ke atas grid jika perlu
-    // document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const handleNext = () => {
@@ -69,10 +68,11 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="py-14 bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
+    <section
+      id="projects"
+      className="py-14 bg-slate-50 dark:bg-slate-900 transition-colors duration-300"
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Header */}
         <motion.h2
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -82,12 +82,10 @@ export default function Projects() {
           Featured Projects
         </motion.h2>
 
-        {/* Grid Container */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {/* Render 'currentProjects' (data yang sudah dipotong) */}
           {currentProjects.map((project, idx) => (
             <motion.div
-              key={`${currentPage}-${idx}`} // Key unik agar animasi ulang saat ganti halaman
+              key={`${currentPage}-${idx}`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -95,7 +93,6 @@ export default function Projects() {
               whileHover={{ y: -5 }}
               className="group bg-white dark:bg-slate-800 rounded-xl border-2 border-gray-300 dark:border-slate-700 hover:border-emerald-500 dark:hover:border-emerald-500 overflow-hidden transition-all duration-300 flex flex-col"
             >
-              {/* 1. Image Area */}
               <div className="h-36 relative overflow-hidden bg-slate-200 dark:bg-slate-700">
                 <img
                   src={project.image}
@@ -105,7 +102,6 @@ export default function Projects() {
                 <div className="absolute inset-0 transition-colors duration-300"></div>
               </div>
 
-              {/* 2. Content Area */}
               <div className="p-4 flex flex-col grow">
                 <div className="flex justify-between items-start mb-2">
                   <h3 className="font-bold text-slate-800 dark:text-white text-lg leading-tight group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
@@ -152,11 +148,8 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* --- PAGINATION CONTROLS --- */}
-        {/* Hanya tampil jika total halaman lebih dari 1 */}
         {totalPages > 1 && (
           <div className="mt-12 flex justify-center items-center gap-3">
-            {/* Tombol Previous */}
             <motion.button
               whileTap={{ scale: 0.9 }}
               onClick={handlePrev}
@@ -170,7 +163,6 @@ export default function Projects() {
               <FaChevronLeft size={14} />
             </motion.button>
 
-            {/* Angka Halaman */}
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
               <motion.button
                 key={page}
@@ -187,7 +179,6 @@ export default function Projects() {
               </motion.button>
             ))}
 
-            {/* Tombol Next */}
             <motion.button
               whileTap={{ scale: 0.9 }}
               onClick={handleNext}
@@ -202,7 +193,6 @@ export default function Projects() {
             </motion.button>
           </div>
         )}
-
       </div>
     </section>
   );

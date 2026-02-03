@@ -55,7 +55,6 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           
-          {/* LOGO */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -66,7 +65,6 @@ export default function Navbar() {
             </a>
           </motion.div>
 
-          {/* DESKTOP MENU */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link, index) => {
               const isActive = activeSection === link.href.substring(1);
@@ -86,13 +84,11 @@ export default function Navbar() {
                 >
                   {link.name}
                   
-                  {/* --- GARIS BAWAH (UNDERLINE) --- */}
                   <span className="absolute -bottom-1 left-0 h-0.5 bg-emerald-600 dark:bg-emerald-400 transition-all duration-300 ease-in-out w-0 group-hover:w-full"></span>
                 </motion.a>
               );
             })}
 
-            {/* DARK MODE TOGGLE (DESKTOP) */}
             <button
               type="button"
               className="theme-toggle !text-slate-600 dark:!text-slate-300 hover:!text-emerald-600 dark:hover:!text-emerald-400 p-2 transition-colors cursor-pointer"
@@ -119,7 +115,6 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* MOBILE TOGGLE & BURGER */}
           <div className="md:hidden flex items-center gap-4">
              <button
               type="button"
@@ -156,7 +151,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* MOBILE MENU */}
       {isOpen && (
         <motion.div
           initial={{ opacity: 0, height: 0 }}

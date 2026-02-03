@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { HiMenuAlt3, HiX } from "react-icons/hi";
+import { HiMenu, HiX } from "react-icons/hi";
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -76,7 +76,7 @@ export default function Navbar() {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className={`relative group font-medium transition-colors duration-300 ${
+                  className={`relative group font-semibold transition-colors duration-300 ${
                     isActive
                       ? "text-emerald-600 dark:text-emerald-400"
                       : "text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400" // Normal: Abu-abu -> Hover Hijau
@@ -84,7 +84,7 @@ export default function Navbar() {
                 >
                   {link.name}
                   
-                  <span className="absolute -bottom-1 left-0 h-0.5 bg-emerald-600 dark:bg-emerald-400 transition-all duration-300 ease-in-out w-0 group-hover:w-full"></span>
+                  <span className="absolute -bottom-1 left-0 h-1 bg-emerald-600 dark:bg-emerald-400 transition-all duration-300 ease-in-out w-0 group-hover:w-full"></span>
                 </motion.a>
               );
             })}
@@ -145,7 +145,7 @@ export default function Navbar() {
               onClick={() => setIsOpen(!isOpen)}
               className="text-emerald-600 dark:text-emerald-400 text-2xl cursor-pointer"
             >
-              {isOpen ? <HiX /> : <HiMenuAlt3 />}
+              {isOpen ? <HiX /> : <HiMenu />}
             </button>
           </div>
         </div>

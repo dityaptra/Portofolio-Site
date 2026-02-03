@@ -23,22 +23,27 @@ const row2 = [
 ];
 
 const SkillPill = ({ name, icon }: { name: string; icon: string }) => (
-  <div className="flex items-center gap-4 px-6 py-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full shadow-sm shrink-0 hover:border-emerald-500 dark:hover:border-emerald-500 transition-colors duration-300">
-    <div className="w-10 h-10 relative flex items-center justify-center">
+  <div 
+    className="flex items-center justify-center p-4 md:p-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-md shadow-sm shrink-0 hover:border-emerald-500 dark:hover:border-emerald-500 hover:scale-110 transition-all duration-300 cursor-help"
+    title={name} // Tooltip native browser: Muncul saat hover
+  >
+    {/* CONTAINER ICON 
+       Mobile: w-12 h-12 (48px)
+       Desktop: w-16 h-16 (64px) -> Besar dan Jelas
+    */}
+    <div className="w-12 h-12 md:w-16 md:h-16 relative flex items-center justify-center">
       <img
         src={icon}
         alt={`${name} logo`}
         className="w-full h-full object-contain"
         loading="lazy"
         decoding="async"
-        width="40"
-        height="40"
+        width="64"
+        height="64"
       />
     </div>
 
-    <span className="font-semibold text-slate-700 dark:text-slate-200 text-base whitespace-nowrap">
-      {name}
-    </span>
+    {/* ELEMEN TEXT SUDAH DIHAPUS TOTAL */}
   </div>
 );
 
@@ -53,11 +58,12 @@ const MarqueeRow = ({
 }) => {
   return (
     <div className="flex overflow-hidden relative w-full group">
-      <div className="absolute top-0 left-0 w-16 h-full bg-gradient-to-r from-white dark:from-slate-900 to-transparent z-10 pointer-events-none"></div>
-      <div className="absolute top-0 right-0 w-16 h-full bg-gradient-to-l from-white dark:from-slate-900 to-transparent z-10 pointer-events-none"></div>
+      {/* Gradient Fade di kiri & kanan agar animasi terlihat smooth */}
+      <div className="absolute top-0 left-0 w-16 md:w-32 h-full bg-gradient-to-r from-white dark:from-slate-900 to-transparent z-10 pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-16 md:w-32 h-full bg-gradient-to-l from-white dark:from-slate-900 to-transparent z-10 pointer-events-none"></div>
 
       <div
-        className="flex gap-6 py-2 pr-6 w-max animate-marquee group-hover:[animation-play-state:paused]"
+        className="flex gap-4 md:gap-8 py-4 pr-6 w-max animate-marquee group-hover:[animation-play-state:paused]"
         style={{
           animationDuration: `${speed}s`,
           animationDirection: direction === "right" ? "reverse" : "normal",
@@ -91,9 +97,9 @@ export default function Skills() {
           Technical Skills
         </motion.h2>
 
-        <div className="flex flex-col gap-4">
-          <MarqueeRow items={row1} direction="left" speed={25} />
-          <MarqueeRow items={row2} direction="right" speed={25} />
+        <div className="flex flex-col gap-6 md:gap-10">
+          <MarqueeRow items={row1} direction="left" speed={30} />
+          <MarqueeRow items={row2} direction="right" speed={30} />
         </div>
       </div>
     </section>

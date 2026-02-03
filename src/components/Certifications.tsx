@@ -1,3 +1,4 @@
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import {
   FaAward,
@@ -28,6 +29,29 @@ const certifications = [
 ];
 
 export default function Certifications() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  // Fungsi untuk mendeteksi slide mana yang sedang aktif
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      const scrollLeft = scrollRef.current.scrollLeft;
+      const width = scrollRef.current.offsetWidth;
+      const index = Math.round(scrollLeft / width);
+      setActiveIndex(index);
+    }
+  };
+
+  // Fungsi untuk klik dot -> scroll ke slide terkait
+  const scrollToSlide = (index: number) => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({
+        left: index * scrollRef.current.offsetWidth,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <section
       id="certifications"
@@ -45,7 +69,22 @@ export default function Certifications() {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* CONTAINER UTAMA 
+          1. flex, overflow-x-auto, snap-x: Membuat slider horizontal di mobile
+          2. [&::-webkit-scrollbar]:hidden: MENYEMBUNYIKAN SCROLLBAR (Request Anda)
+          3. md:grid: Kembali ke tampilan Grid di Desktop
+        */}
+        <div
+          ref={scrollRef}
+          onScroll={handleScroll}
+          className="
+            flex gap-6 
+            overflow-x-auto snap-x snap-mandatory 
+            py-4
+            [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']
+            md:grid md:grid-cols-2 lg:grid-cols-3 md:overflow-visible md:py-4
+          "
+        >
           {certifications.map((cert, idx) => (
             <motion.div
               key={idx}
@@ -53,9 +92,12 @@ export default function Certifications() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="group relative h-full"
+              // Mobile: min-w-full (Satu layar penuh per kartu)
+              // Desktop: min-w-0 (Reset lebar agar sesuai grid)
+              className="group relative h-full min-w-full md:min-w-0 snap-center"
             >
               <div className="h-full bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:border-emerald-500/50 relative overflow-hidden flex flex-col">
+                {/* Background Glow Effect */}
                 <div className="absolute -right-6 -top-6 w-24 h-24 bg-emerald-50 dark:bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-100 dark:group-hover:bg-emerald-500/20 transition-all duration-500"></div>
 
                 <div className="flex justify-between items-start mb-6 relative z-10">
@@ -93,6 +135,23 @@ export default function Certifications() {
                 </div>
               </div>
             </motion.div>
+          ))}
+        </div>
+
+        {/* --- DOTS INDICATOR (MOBILE ONLY) --- */}
+        {/* md:hidden artinya hilang di layar desktop */}
+        <div className="flex justify-center gap-2 mt-6 md:hidden">
+          {certifications.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => scrollToSlide(idx)}
+              className={`h-2.5 rounded-full transition-all duration-500 ease-in-out ${
+                activeIndex === idx
+                  ? "w-8 bg-emerald-500" // Dot Aktif (Panjang)
+                  : "w-2.5 bg-slate-300 dark:bg-slate-700 hover:bg-emerald-300" // Dot Mati (Bulat)
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
           ))}
         </div>
       </div>
